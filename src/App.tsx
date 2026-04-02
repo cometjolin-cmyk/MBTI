@@ -15,6 +15,7 @@ import {
   Twitter,
   Facebook,
   Briefcase,
+  RotateCcw,
   Link as LinkIcon
 } from 'lucide-react';
 import html2pdf from 'html2pdf.js';
@@ -309,7 +310,7 @@ const PersonalityAvatar = ({ code, family, loading = false, language }: { code: 
 
 export default function App() {
   const [step, setStep] = useState<'intro' | 'quiz' | 'result'>('intro');
-  const [language, setLanguage] = useState<'zh' | 'en'>('zh');
+  const [language, setLanguage] = useState<'zh' | 'en'>('en');
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [currentPage, setCurrentPage] = useState(0);
   const [result, setResult] = useState<PersonalityType | null>(null);
@@ -360,11 +361,16 @@ export default function App() {
       how3: "考慮「平常的你」：",
       how3Content: "想像你在最自然、壓力最小的情況下會如何反應，而非在工作或特定角色中的表現。",
       understand: "我已了解，開始測驗",
-      calculating: "正在分析您的性格特質...",
+      analyzing: "正在分析您的性格特質...",
+      analyzingSubtitle: "我們正在根據您的心理傾向，為您匹配最貼切的性格模型與 AI 形象。",
       progress: "測驗進度",
+      group: "組別",
+      disagree: "不同意",
+      agree: "同意",
+      neutral: "中立",
       prev: "上一頁",
       next: "下一頁",
-      seeResult: "查看結果",
+      viewResult: "查看結果",
       resultTitle: "您的性格類型是",
       traits: "性格特質",
       careers: "推薦職業",
@@ -451,7 +457,8 @@ export default function App() {
       how3: "Consider 'Usual You':",
       how3Content: "Imagine how you would react in your most natural, low-stress situations, rather than at work or in specific roles.",
       understand: "I understand, start test",
-      calculating: "Analyzing your personality traits...",
+      analyzing: "Analyzing your personality traits...",
+      analyzingSubtitle: "We are matching the most appropriate personality model and AI image for you based on your psychological tendencies.",
       progress: "Progress",
       group: "Group",
       disagree: "Disagree",
@@ -675,6 +682,16 @@ export default function App() {
     } finally {
       setIsGeneratingPDF(false);
     }
+  };
+
+  const handleRetake = () => {
+    setStep('intro');
+    setAnswers({});
+    setCurrentPage(0);
+    setResult(null);
+    setResultImage(null);
+    setIsCalculating(false);
+    window.scrollTo(0, 0);
   };
 
   const handleShare = (platform: 'twitter' | 'facebook' | 'copy') => {
@@ -1653,6 +1670,13 @@ export default function App() {
                       <Download className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
                     )}
                     <span className="text-lg">{isGeneratingPDF ? t.generatingPDF : t.downloadPDF}</span>
+                  </button>
+                  <button 
+                    onClick={handleRetake}
+                    className="px-10 py-5 rounded-[24px] font-black flex items-center gap-3 transition-all active:scale-95 bg-white/10 hover:bg-white/20 text-white border border-white/20"
+                  >
+                    <RotateCcw className="w-6 h-6" />
+                    <span className="text-lg">{t.retake}</span>
                   </button>
                 </div>
               </div>
