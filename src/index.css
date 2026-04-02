@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Serif TC", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+:root {
+  --color-ei-blue: hsl(200, 75%, 65%);
+  --color-sn-green: hsl(145, 60%, 65%);
+  --color-ei-purple: hsl(270, 50%, 70%);
+  --color-tf-red: hsl(0, 70%, 70%);
+  --color-tf-pink: hsl(335, 75%, 75%);
+  --color-jp-orange: hsl(35, 85%, 65%);
+  --color-jp-light-orange: hsl(25, 80%, 75%);
+  
+  /* Light versions for quiz background */
+  --color-ei-blue-light: hsl(200, 75%, 97%);
+  --color-sn-green-light: hsl(145, 60%, 97%);
+  --color-ei-purple-light: hsl(270, 50%, 97%);
+  --color-tf-red-light: hsl(0, 70%, 97%);
+  --color-tf-pink-light: hsl(335, 75%, 97%);
+  --color-jp-orange-light: hsl(35, 85%, 97%);
+}
+
+@keyframes flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-flow {
+  background-size: 400% 400%;
+  animation: flow 15s ease infinite;
+}
+
+.animate-flow-slow {
+  background-size: 400% 400%;
+  animation: flow 25s ease infinite;
+}
+
+.gradient-cold {
+  background: linear-gradient(
+    -45deg, 
+    var(--color-sn-green), 
+    var(--color-ei-purple),
+    var(--color-sn-green)
+  );
+}
+
+.gradient-warm {
+  background: linear-gradient(
+    -45deg, 
+    var(--color-tf-red), 
+    var(--color-tf-pink), 
+    var(--color-jp-orange),
+    var(--color-tf-red)
+  );
+}
+
+.gradient-quiz-light {
+  background: linear-gradient(
+    -45deg, 
+    var(--color-ei-blue-light), 
+    var(--color-sn-green-light), 
+    var(--color-ei-purple-light),
+    var(--color-tf-red-light),
+    var(--color-tf-pink-light),
+    var(--color-ei-blue-light)
+  );
+}

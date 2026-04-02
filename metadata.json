@@ -1,0 +1,5 @@
+{
+  "name": "MBTI 專業性格測試",
+  "description": "一個專業的 93 題 MBTI 性格測試網站，包含行為、詞彙與思考方式分析，並結合 Gemini AI 生成專屬性格形象。",
+  "requestFramePermissions": []
+}
